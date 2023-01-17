@@ -150,8 +150,47 @@ FROM vaccinations vac
 --another view
 
 CREATE VIEW perc_pop_dead AS
-SELECT location, population, MAX(total_cases) as cases_by_country,
+SELECT location, population, MAX(total_cases) AS cases_by_country,
        MAX(total_deaths/population)*100 AS perc_pop_dead FROM deaths
        WHERE continent IS NOT NULL
         GROUP BY population, location
 ORDER BY 1,2
+
+--additional views for data viz in Tableau below
+
+CREATE VIEW cases_deaths_perc_dead AS
+SELECT SUM(new_cases) AS total_cases, SUM(new_deaths) AS total_deaths, SUM((new_deaths))/SUM(new_cases)*100 AS death_perc
+FROM deaths
+WHERE CONTINENT IS NOT NULL
+ORDER BY 1,2
+---
+CREATE VIEW deaths_per_cont AS
+SELECT location, SUM((new_deaths)) AS total_death_count
+FROM deaths
+WHERE continent IS NULL
+AND location NOT IN ('World', 'European Union', 'International')
+AND location NOT LIKE '%income%'
+Group BY location
+ORDER BY total_death_count DESC
+
+
+----map look
+
+CREATE VIEW map_look AS
+SELECT location, population, MAX(total_cases) AS highest_inf_count,
+       MAX(total_cases/population)*100 AS perc_pop_inf
+FROM deaths
+
+GROUP BY location, population
+ORDER BY perc_pop_inf DESC
+
+
+--- time series data
+
+CREATE VIEW date_info AS
+SELECT location, population, date, MAX(total_cases) AS highest_inf_count,
+       MAX((total_cases/population))*100 AS perc_pop_inf
+FROM deaths
+
+GROUP BY location, population, date
+ORDER BY perc_pop_inf DESC
