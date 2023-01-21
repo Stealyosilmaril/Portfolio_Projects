@@ -48,7 +48,6 @@ UPDATE nash SET owner_city = SPLIT_PART(owneraddress, ',', 2);
 UPDATE nash SET owner_state = SPLIT_PART(owneraddress, ',', 3);
 
 --Changing all 'Y' and 'N' values to 'Yes' and 'No' values in the soldasvacant column
-
 SELECT DISTINCT(soldasvacant), COUNT(soldasvacant)
 FROM nash
 GROUP BY soldasvacant
