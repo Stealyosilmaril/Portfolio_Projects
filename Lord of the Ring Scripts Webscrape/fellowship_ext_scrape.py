@@ -33,7 +33,7 @@ soup = BeautifulSoup(pre_soup.prettify(), 'lxml')
 # #finally. works great. but not list? Convert to list so that csv doesn't place each letter of string in separate cell
 
 
-with open('fellowhip_extended_scrape.csv', 'w', newline= '', encoding='utf8') as file:
+with open('fellowship_extended_scrape.csv', 'w', newline= '', encoding='utf8') as file:
     writer = csv.writer(file)
     header = ['Speaker']
     writer.writerow(header)
