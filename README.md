@@ -1,6 +1,8 @@
 # Portfolio_Projects
 
-Find here a collection of what I'm working on. Mostly SQL, Tableau, and Python. 
+Find here a collection of what I'm working on. Mostly SQL, Python, Tableau, and R. 
+
+Tableau: https://public.tableau.com/app/profile/shane.manske
 
 Data Sources:
 Covid dashboard - https://ourworldindata.org/covid-deaths |
